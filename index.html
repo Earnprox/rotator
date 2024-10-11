@@ -15,24 +15,60 @@
             justify-content: center; /* Center horizontally */
             align-items: center; /* Center vertically */
             overflow: hidden; /* Prevent scrolling */
+            font-family: Arial, sans-serif; /* Just in case you want to add some text */
+        }
+
+        .loading-message {
+            color: #000; /* Black text for the loading message */
+            font-size: 24px; /* Large font size */
+            text-align: center; /* Center the text */
         }
     </style>
 </head>
 <body>
+    <div class="loading-message">
+        Redirecting you to a random URL...
+    </div>
+
     <script>
-        // Define an array of URLs to rotate through
+        // Define an array of URLs (use as few or as many URLs as needed)
         const urls = [
             'https://wasepje.com/hi-msg-o5cip',
             'https://wasepje.com/first-ynzxt'
         ];
 
-        // Get a random URL from the array
+        // Function to select a random URL from the array
         function getRandomUrl() {
             const randomIndex = Math.floor(Math.random() * urls.length); // Generate a random index
             return urls[randomIndex]; // Return the URL at that index
         }
 
-        // Redirect to the random URL
+        // Function to handle redirection
         function redirectToRandomUrl() {
-            const urlToRedirect = getRandomUrl(); // Get the random URL
-            window.location.href = urlToRedirect; // Redirect to the random URL
+            try {
+                const urlToRedirect = getRandomUrl(); // Get the random URL
+                console.log('Redirecting to: ', urlToRedirect); // Log the URL to the console (for debugging purposes)
+
+                // Redirect the browser to the randomly selected URL
+                window.location.href = urlToRedirect;
+            } catch (error) {
+                console.error('Error during redirection: ', error); // Log any errors to the console
+                document.querySelector('.loading-message').innerText = 'Error: Unable to redirect.';
+            }
+        }
+
+        // Function to delay the redirection for user experience (optional)
+        function delayedRedirect(delayInSeconds) {
+            document.querySelector('.loading-message').innerText = `Redirecting in ${delayInSeconds} seconds...`;
+            setTimeout(() => {
+                redirectToRandomUrl(); // Call the redirect function after the delay
+            }, delayInSeconds * 1000); // Convert seconds to milliseconds
+        }
+
+        // Execute when the window is fully loaded
+        window.onload = function () {
+            delayedRedirect(2); // Wait for 2 seconds before redirecting
+        };
+    </script>
+</body>
+</html>
