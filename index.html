@@ -22,43 +22,25 @@
     <script>
         // Define an array of URLs to rotate through
         const urls = [
-            'https://rebrand.ly/interested35',
-            'https://rebrand.ly/interested8421',
-            'https://rebrand.ly/interested35',
-            'https://rebrand.ly/interested7276'
+            'https://wasepje.com/hi-msg-o5cip',
+            'https://wasepje.com/first-ynzxt',
+            
         ];
 
-        // Get the current index from local storage or initialize it
-        function getCurrentIndex() {
-            const currentIndex = parseInt(localStorage.getItem('currentIndex')) || 0;
-            return currentIndex;
+        // Get a random URL from the array
+        function getRandomUrl() {
+            const randomIndex = Math.floor(Math.random() * urls.length); // Generate a random index
+            return urls[randomIndex]; // Return the URL at that index
         }
 
-        // Update the index in local storage
-        function updateCurrentIndex(index) {
-            localStorage.setItem('currentIndex', index);
-        }
-
-        // Get the next URL based on the current index
-        function getNextUrl() {
-            const currentIndex = getCurrentIndex();
-            const nextUrl = urls[currentIndex];
-
-            // Calculate the next index, wrapping around if necessary
-            const nextIndex = (currentIndex + 1) % urls.length;
-            updateCurrentIndex(nextIndex); // Save the updated index
-            
-            return nextUrl; // Return the next URL
-        }
-
-        // Redirect to the next URL immediately
-        function redirectToNextUrl() {
-            const urlToRedirect = getNextUrl(); // Get the next URL
-            window.location.href = urlToRedirect; // Redirect to the next URL
+        // Redirect to the random URL
+        function redirectToRandomUrl() {
+            const urlToRedirect = getRandomUrl(); // Get the random URL
+            window.location.href = urlToRedirect; // Redirect to the random URL
         }
 
         // Initialize redirection when the window loads
-        window.onload = redirectToNextUrl; // Directly call the redirection function
+        window.onload = redirectToRandomUrl; // Directly call the redirection function
     </script>
 </body>
 </html>
